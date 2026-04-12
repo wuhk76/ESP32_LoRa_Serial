@@ -43,13 +43,14 @@ Open Arduino IDE 2.3x or later, and upload LoRa_PTP_Firmware.ino to your ESP32 d
 from esplora import Esplora
 
 # Initialize connection
-esp = Esplora('/dev/ttyUSB0', 115200)
+esp1 = Esplora('/dev/ttyUSB0', 115200) # First ESP32
+esp2 = Esplora('/dev/ttyUSB1', 115200) # Second ESP32
 
-# Send data
-esp.send('Hello, world!')
+# Send data from the first ESP32 serial link;
+esp1.send('Hello, world!')
 
-# Receive response from second ESP32 serial link;
-response = esp.receive()
+# Receive response from the second ESP32 serial link;
+response = esp2.receive()
 print(response)
 ```
 
@@ -115,20 +116,21 @@ Initializes a serial connection.
 
 ---
 
-### `send(data: bytes)`
+### `send(data, encoding = 'utf-8')`
 
 Sends a packet to the device.
 
-- `data`: Byte string to send
+- `data`: String to send
+- `encoding`: method to encode the string
 
 ---
 
-### `receive() -> bytes`
+### `receive(decoding = 'utf-8') -> bytes`
 
 Requests and reads a packet from the device.
 
 - Returns: Received byte payload
-
+- `decoding`: method to decode received bytes
 ---
 
 ## Example Packet Flow
