@@ -1,5 +1,5 @@
 # ESP32_LoRa_Serial
-Simple python based API for Heltec WiFi LoRa 32 (V3)
+Simple Python-based API for Heltec WiFi LoRa 32 (V3)
 
 ## Overview
 
@@ -40,14 +40,13 @@ Open Arduino IDE 2.3x or later, and upload LoRa_PTP_Firmware.ino to your ESP32 d
 ## Usage
 
 ```python
-import serial
 from esplora import Esplora
 
 # Initialize connection
-esp = Esplora("/dev/ttyUSB0", 115200)
+esp = Esplora('/dev/ttyUSB0', 115200)
 
 # Send data
-esp.send(b"Hello, world!")
+esp.send('Hello, world!')
 
 # Receive response from second ESP32 serial link;
 response = esp.receive()
@@ -63,7 +62,7 @@ print(response)
 When calling:
 
 ```python
-send(data)
+send(data, encoding = '')
 ```
 
 The following packet is transmitted:
@@ -83,7 +82,7 @@ The following packet is transmitted:
 When calling:
 
 ```python
-receive()
+receive(decoding = '')
 ```
 
 The following occurs:
@@ -106,11 +105,11 @@ The following occurs:
 
 ## Class Reference
 
-### `Esplora(port, baud, timeout=1)`
+### `Esplora(port, baud, timeout = 1)`
 
 Initializes a serial connection.
 
-- `port`: Serial port (e.g. `/dev/ttyUSB0`, `COM3`)
+- `port`: Serial port (e.g., `/dev/ttyUSB0`, `COM3`)
 - `baud`: Baud rate (e.g. `115200`)
 - `timeout`: Read timeout in seconds
 
@@ -161,6 +160,6 @@ MIT License (or specify your preferred license)
 ## Future Improvements
 
 - Add checksum / CRC support
-- Mutithreading in receive function
+- Mutithreading in the receive function
 - Packet validation and error handling
 - Higher-level message abstractions
